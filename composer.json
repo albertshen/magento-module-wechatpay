@@ -1,0 +1,30 @@
+{
+    "name": "albertshen/magento-module-wechatpay",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "0.1.1",
+    "require": {
+        "php": "~7.3.0||~7.4.0",
+        "albertshen/payment": "1.0.0"
+    },
+    "authors": [{
+        "name": "Albert Shen",
+        "email": "albertshen1206@gmail.com",
+    }],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Albert\\Magento\\WeChatPay": ""
+        }
+    }
+}
+
