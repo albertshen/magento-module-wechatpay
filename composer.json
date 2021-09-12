@@ -16,7 +16,7 @@
     },
     "authors": [{
         "name": "Albert Shen",
-        "email": "albertshen1206@gmail.com",
+        "email": "albertshen1206@gmail.com"
     }],
     "autoload": {
         "files": [
@@ -27,4 +27,3 @@
         }
     }
 }
-
