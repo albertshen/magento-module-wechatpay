@@ -11,7 +11,7 @@
     },
     "version": "0.1.1",
     "require": {
-        "php": "~7.3.0||~7.4.0",
+        "php": "~7.3.0||~7.4.0||~8.0",
         "albertshen/payment": "1.0.1"
     },
     "authors": [{
