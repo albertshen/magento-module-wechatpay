@@ -23,7 +23,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Albert\\Magento\\WeChatPay": ""
+            "Albert\\Magento\\WeChatPay\\": ""
         }
     }
 }
