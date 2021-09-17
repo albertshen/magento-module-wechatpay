@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Albert\Magento\WeChatPay\Api\PaymentInterface" type="Albert\Magento\WeChatPay\Model\Service\Payment"/>
+    <preference for="Albert\Magento\WeChatPay\Api\Data\QrcodeInterface" type="Albert\Magento\WeChatPay\Model\Data\Qrcode"/>
+    <preference for="Albert\Magento\WeChatPay\Api\Data\JsapiInterface" type="Albert\Magento\WeChatPay\Model\Data\Jsapi"/>
+	<type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="DownloadWeChatCertCommand" xsi:type="object">Albert\Magento\WeChatPay\Console\Command\DownloadWeChatCertCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

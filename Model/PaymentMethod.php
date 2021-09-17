@@ -4,11 +4,10 @@
  *
  * Module Created By : Albert Shen
  */
-namespace Albert\Mangento\WeChatPayment\Model;
-/**
- * RH Custom Payment Method Model
- */
-class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod {
+namespace Albert\Magento\WeChatPay\Model;
+
+class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod 
+{
     /**
      * Payment Method code
      *
