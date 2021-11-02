@@ -1,6 +1,6 @@
 <?php
 
-namespace Albert\Magento\WeChatPay\Api\Data;
+namespace AlbertMage\WeChatPay\Api\Data;
 
 /**
  * Interface QrcodeInterface

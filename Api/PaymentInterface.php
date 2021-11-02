@@ -1,6 +1,6 @@
 <?php 
 
-namespace Albert\Magento\WeChatPay\Api;
+namespace AlbertMage\WeChatPay\Api;
  
  
 interface PaymentInterface {
@@ -12,7 +12,7 @@ interface PaymentInterface {
 	public function jsapi();
 
 	/**
-	 * @return \Albert\Magento\WeChatPay\Api\Data\QrcodeInterface
+	 * @return \AlbertMage\WeChatPay\Api\Data\QrcodeInterface
 	 */
 	public function nativeScan();
 

@@ -42,12 +42,12 @@
                 </field>
                 <field id="mch_secret_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="9" showInDefault="1" showInWebsite="1" >
                     <label>Merchant Secret Cert Path</label>
-                    <backend_model>Albert\Magento\WeChatPay\Model\Config\Backend\Certificate</backend_model>
+                    <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
                 </field>
                 <field id="mch_public_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="10" showInDefault="1" showInWebsite="1" >
                     <label>Merchant Public Cert Path</label>
-                    <backend_model>Albert\Magento\WeChatPay\Model\Config\Backend\Certificate</backend_model>
+                    <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
                 </field>
                 <field id="wechatpay_serial" translate="label" required="true" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -55,7 +55,7 @@
                 </field>
                 <field id="wechat_public_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="12" showInDefault="1" showInWebsite="1" >
                     <label>WeChat Public Cert Path</label>
-                    <backend_model>Albert\Magento\WeChatPay\Model\Config\Backend\Certificate</backend_model>
+                    <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
                 </field>
                 <field id="notify_url" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">

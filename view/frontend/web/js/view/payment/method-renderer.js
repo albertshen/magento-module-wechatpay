@@ -17,7 +17,7 @@ define(
         rendererList.push(
             {
                 type: 'wechatpay',
-                component: 'Albert_WeChatPay/js/view/payment/method-renderer/wechatpay'
+                component: 'AlbertMage_WeChatPay/js/view/payment/method-renderer/wechatpay'
             }
         );
         return Component.extend({});

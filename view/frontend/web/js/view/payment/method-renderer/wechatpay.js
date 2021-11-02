@@ -13,7 +13,7 @@ define(
   
         return Component.extend({
             defaults: {
-                template: 'Albert_WeChatPay/payment/wechatpay'
+                template: 'AlbertMage_WeChatPay/payment/wechatpay'
             }
         });
     }

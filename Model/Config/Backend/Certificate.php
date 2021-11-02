@@ -1,6 +1,6 @@
 <?php
 
-namespace Albert\Magento\WeChatPay\Model\Config\Backend;
+namespace AlbertMage\WeChatPay\Model\Config\Backend;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Config\ScopeConfigInterface;

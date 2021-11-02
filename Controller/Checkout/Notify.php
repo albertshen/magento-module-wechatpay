@@ -3,7 +3,7 @@
  * Copyright © 2021 PHPDigital. All rights reserved.
  * See more information at http://www.phpdigital.com
  */
-namespace Albert\Magento\WeChatPay\Controller\Checkout;
+namespace AlbertMage\WeChatPay\Controller\Checkout;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Payment\Helper\Data as PaymentHelper;

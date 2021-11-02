@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Albert\Magento\WeChatPay\Console\Command;
+namespace AlbertMage\WeChatPay\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -65,7 +65,7 @@ class DownloadWeChatCertCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $paymentGateway = \Magento\Framework\App\ObjectManager::getInstance()->get(\Albert\Magento\WeChatPay\Model\PaymentGateway::class);
+        $paymentGateway = \Magento\Framework\App\ObjectManager::getInstance()->get(\AlbertMage\WeChatPay\Model\PaymentGateway::class);
         $wechat = $paymentGateway->wechat();
         $data = $wechat->pay(
             [PreparePlugin::class, WechatPublicCertsPlugin::class, SignPlugin::class, ParserPlugin::class],

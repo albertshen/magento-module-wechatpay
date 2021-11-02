@@ -1,13 +1,13 @@
 <?php 
 
-namespace Albert\Magento\WeChatPay\Model\Data;
+namespace AlbertMage\Magento\WeChatPay\Model\Data;
 
 /**
  * Interface JsapiInterface
  * @api
  * @since 1.0.1
  */
-class Jsapi extends \Magento\Framework\Model\AbstractExtensibleModel implements \Albert\Magento\WeChatPay\Api\Data\JsapiInterface
+class Jsapi extends \Magento\Framework\Model\AbstractExtensibleModel implements \AlbertMage\WeChatPay\Api\Data\JsapiInterface
 {
 
     /**

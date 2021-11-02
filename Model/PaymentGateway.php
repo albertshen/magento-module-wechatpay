@@ -4,7 +4,7 @@
  *
  * Module Created By : Albert Shen
  */
-namespace Albert\Magento\WeChatPay\Model;
+namespace AlbertMage\WeChatPay\Model;
 
 use Albert\Payment\Pay;
 

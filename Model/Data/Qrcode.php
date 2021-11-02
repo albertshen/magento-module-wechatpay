@@ -1,8 +1,8 @@
 <?php 
 
-namespace Albert\Magento\WeChatPay\Model\Data;
+namespace AlbertMage\WeChatPay\Model\Data;
  
-class Qrcode extends \Magento\Framework\Model\AbstractExtensibleModel implements \Albert\Magento\WeChatPay\Api\Data\QrcodeInterface
+class Qrcode extends \Magento\Framework\Model\AbstractExtensibleModel implements \AlbertMage\WeChatPay\Api\Data\QrcodeInterface
 {
 
     /**
