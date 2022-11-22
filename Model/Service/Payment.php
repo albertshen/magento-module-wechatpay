@@ -1,7 +1,12 @@
 <?php 
-
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ */
 namespace Albert\Magento\WeChatPay\Model\Service;
  
+/**
+ * @author Albert Shen <albertshen1206@gmail.com>
+ */
 class Payment implements \Albert\Magento\WeChatPay\Api\PaymentInterface
 {
 

@@ -1,7 +1,6 @@
 <?php
 /**
- * Copyright © 2021 PHPDigital. All rights reserved.
- * See more information at http://www.phpdigital.com
+ * Copyright © PHP Digital, Inc. All rights reserved.
  */
 namespace AlbertMage\WeChatPay\Controller\Checkout;
 
@@ -12,7 +11,7 @@ use Magento\Sales\Model\Order\Payment\Transaction;
 use Albert\Payment\Pay;
 
 /**
- * Class Test
+ * @author Albert Shen <albertshen1206@gmail.com>
  */
 class Notify extends Action
 {

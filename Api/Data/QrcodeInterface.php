@@ -1,11 +1,13 @@
 <?php
-
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ */
 namespace AlbertMage\WeChatPay\Api\Data;
 
 /**
  * Interface QrcodeInterface
  * @api
- * @since 1.0.1
+ * @author Albert Shen <albertshen1206@gmail.com>
  */
 interface QrcodeInterface
 {

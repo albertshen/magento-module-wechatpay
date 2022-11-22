@@ -1,10 +1,15 @@
 <?php
-
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ */
 namespace AlbertMage\WeChatPay\Model\Config\Backend;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ * @author Albert Shen <albertshen1206@gmail.com>
+ */
 class Certificate extends \Magento\Config\Model\Config\Backend\File
 {
 

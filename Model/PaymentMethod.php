@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © PHPDigital, Inc. All rights reserved.
- *
- * Module Created By : Albert Shen
+ * Copyright © PHP Digital, Inc. All rights reserved.
  */
 namespace AlbertMage\WeChatPay\Model;
 
+/**
+ * @author Albert Shen <albertshen1206@gmail.com>
+ */
 class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod 
 {
     /**

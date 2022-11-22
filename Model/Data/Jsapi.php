@@ -1,11 +1,12 @@
 <?php 
-
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ */
 namespace AlbertMage\Magento\WeChatPay\Model\Data;
 
 /**
- * Interface JsapiInterface
  * @api
- * @since 1.0.1
+ * @author Albert Shen <albertshen1206@gmail.com>
  */
 class Jsapi extends \Magento\Framework\Model\AbstractExtensibleModel implements \AlbertMage\WeChatPay\Api\Data\JsapiInterface
 {

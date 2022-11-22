@@ -1,13 +1,14 @@
 <?php
 /**
- * Copyright © PHPDigital, Inc. All rights reserved.
- *
- * Module Created By : Albert Shen
+ * Copyright © PHP Digital, Inc. All rights reserved.
  */
 namespace AlbertMage\WeChatPay\Model;
 
 use Albert\Payment\Pay;
 
+/**
+ * @author Albert Shen <albertshen1206@gmail.com>
+ */
 class PaymentGateway
 {
 

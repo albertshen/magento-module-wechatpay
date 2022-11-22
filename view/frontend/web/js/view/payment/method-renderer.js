@@ -1,8 +1,5 @@
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- *
- * Module Created By : Rohan Hapani
+ * Copyright © PHPDigital, Inc. All rights reserved.
  */
 define(
     [
