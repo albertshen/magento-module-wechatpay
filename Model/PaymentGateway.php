@@ -4,7 +4,7 @@
  */
 namespace AlbertMage\WeChatPay\Model;
 
-use Albert\Payment\Pay;
+use Yansongda\Pay\Pay;
 
 /**
  * @author Albert Shen <albertshen1206@gmail.com>
