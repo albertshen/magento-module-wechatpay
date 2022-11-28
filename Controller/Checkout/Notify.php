@@ -5,10 +5,6 @@
 namespace AlbertMage\WeChatPay\Controller\Checkout;
 
 use Magento\Framework\App\Action\Action;
-use Magento\Payment\Helper\Data as PaymentHelper;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Sales\Model\Order\Payment\Transaction;
-use Albert\Payment\Pay;
 
 /**
  * @author Albert Shen <albertshen1206@gmail.com>
@@ -16,33 +12,19 @@ use Albert\Payment\Pay;
 class Notify extends Action
 {
 
-   protected $invoiceService;
+    /**
+     * @var \AlbertMage\Payment\Api\PaymentCaptureInterface
+     */
+    protected $paymentCapture;
 
-   protected $transactionFactory;
-
-   protected $messageManager;
-
-   protected $invoiceSender;
-
-   protected $orderFactory;
-
-   protected $transactionBuilder;
-
+    /**
+     * @param \AlbertMage\Payment\Api\PaymentCaptureInterface $paymentCapture
+     */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Magento\Sales\Model\Service\InvoiceService $invoiceService,
-        \Magento\Framework\DB\TransactionFactory $transactionFactory,
-        \Magento\Sales\Api\Data\OrderInterfaceFactory $orderFactory,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
-        \Magento\Sales\Model\Order\Payment\Transaction\BuilderInterface $transactionBuilder
+        \AlbertMage\Payment\Api\PaymentCaptureInterface $paymentCapture
     ) {
-        $this->orderFactory = $orderFactory;
-        $this->invoiceService = $invoiceService;
-        $this->transactionFactory = $transactionFactory;
-        $this->messageManager = $messageManager;
-        $this->invoiceSender = $invoiceSender;
-        $this->transactionBuilder = $transactionBuilder;
+        $this->paymentCapture = $paymentCapture;
         parent::__construct($context);
     }
 
@@ -57,95 +39,16 @@ class Notify extends Action
 
     public function capturePayment($paymentData)
     {
-        $order = $this->orderFactory->create()->loadByIncrementId($paymentData['resource']['ciphertext']['out_trade_no']);
+        $orderNo = $paymentData['resource']['ciphertext']['out_trade_no'];
+        $transactionId = $paymentData['resource']['ciphertext']['transaction_id'];
 
-        $this->addTransactionToOrder($order, $paymentData);
+        $order = $this->orderFactory->create()->loadByIncrementId($orderNo);
 
-        $this->generateInvoice($order);
-    }
-
-    /**
-     * Create Invoice Based on Order Object
-     * @param \Magento\Sales\Model\Order $order
-     * @return $this
-     */
-    public function generateInvoice($order)
-    {
-        try {
-            // $order = $this->orderRepository->get($orderId);
-            if (!$order->getId()) {
-                throw new \Magento\Framework\Exception\LocalizedException(__('The order no longer exists.'));
-            }
-            if(!$order->canInvoice()) {
-                throw new \Magento\Framework\Exception\LocalizedException(
-                        __('The order does not allow an invoice to be created.')
-                    );
-            }
-
-            $invoice = $this->invoiceService->prepareInvoice($order);
-            if (!$invoice) {
-                throw new \Magento\Framework\Exception\LocalizedException(__('We can\'t save the invoice right now.'));
-            }
-            if (!$invoice->getTotalQty()) {
-                throw new \Magento\Framework\Exception\LocalizedException(
-                    __('You can\'t create an invoice without products.')
-                );
-            }
-            $invoice->setRequestedCaptureCase(\Magento\Sales\Model\Order\Invoice::CAPTURE_ONLINE);
-            $invoice->register();
-            $invoice->getOrder()->setCustomerNoteNotify(false);
-            $invoice->getOrder()->setIsInProcess(true);
-            $order->addStatusHistoryComment('Automatically INVOICED', false);
-            $transactionSave = $this->transactionFactory->create()->addObject($invoice)->addObject($invoice->getOrder());
-            $transactionSave->save();
-
-            // send invoice emails, If you want to stop mail disable below try/catch code
-            // try {
-            //     $this->invoiceSender->send($invoice);
-            // } catch (\Exception $e) {
-            //     $this->messageManager->addError(__('We can\'t send the invoice email right now.'));
-            // }
-        } catch (\Exception $e) {
-            
-            $this->messageManager->addError($e->getMessage());
-        }
-
-        return $invoice;
-    }
-
-    public function addTransactionToOrder($order, $paymentData = array()) {
-        try {
-            // Prepare payment object
-            $payment = $order->getPayment();
-            $payment->setMethod('wechatpayment'); 
-            $payment->setLastTransId($paymentData['resource']['ciphertext']['transaction_id']);
-            $payment->setTransactionId($paymentData['resource']['ciphertext']['transaction_id']);
-            $payment->setAdditionalInformation([Transaction::RAW_DETAILS => (array) $paymentData]);
-
-            // Formatted price
-            $formatedPrice = $order->getBaseCurrency()->formatTxt($order->getGrandTotal());
- 
-            // Prepare transaction
-            $transaction = $this->transactionBuilder->setPayment($payment)
-                            ->setOrder($order)
-                            ->setTransactionId($paymentData['resource']['ciphertext']['transaction_id'])
-                            ->setAdditionalInformation([Transaction::RAW_DETAILS => (array) $paymentData])
-                            ->setFailSafe(true)
-                            ->build(Transaction::TYPE_CAPTURE);
-
-            // Add transaction to payment
-            $payment->addTransactionCommentsToOrder($transaction, __('The authorized amount is %1.', $formatedPrice));
-            $payment->setParentTransactionId(null);
-
-            // Save payment, transaction and order
-            $payment->save();
-            $order->save();
-            $transaction->save();
- 
-            return  $transaction->getTransactionId();
-
-        } catch (Exception $e) {
-            $this->messageManager->addExceptionMessage($e, $e->getMessage());
-        }
+        $this->paymentCapture
+            ->setOrder($order)
+            ->setPaymenGateway(\AlbertMage\WeChatPay\Api\PaymentInterface::GATEWAY)
+            ->setTransactionId($transactionId)
+            ->setPaymentRawData((array) $paymentData)
+            ->capture()
     }
 }

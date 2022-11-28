@@ -9,6 +9,7 @@ namespace AlbertMage\WeChatPay\Api;
  */
 interface PaymentInterface {
 
+	const GATEWAY = 'wechatpay';
 
 	/**
 	 * @return array
