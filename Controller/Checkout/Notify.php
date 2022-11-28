@@ -49,6 +49,6 @@ class Notify extends Action
             ->setPaymenGateway(\AlbertMage\WeChatPay\Api\PaymentInterface::GATEWAY)
             ->setTransactionId($transactionId)
             ->setPaymentRawData((array) $paymentData)
-            ->capture()
+            ->capture();
     }
 }
