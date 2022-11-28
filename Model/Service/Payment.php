@@ -2,12 +2,12 @@
 /**
  * Copyright © PHP Digital, Inc. All rights reserved.
  */
-namespace Albert\Magento\WeChatPay\Model\Service;
+namespace AlbertMage\WeChatPay\Model\Service;
  
 /**
  * @author Albert Shen <albertshen1206@gmail.com>
  */
-class Payment implements \Albert\Magento\WeChatPay\Api\PaymentInterface
+class Payment implements \AlbertMage\WeChatPay\Api\PaymentInterface
 {
 
     /**
@@ -20,7 +20,7 @@ class Payment implements \Albert\Magento\WeChatPay\Api\PaymentInterface
     protected $storeManager;
  
     public function __construct(
-    	\Albert\Magento\WeChatPay\Model\PaymentGateway $paymentGateway,
+    	\AlbertMage\WeChatPay\Model\PaymentGateway $paymentGateway,
         \Magento\Framework\Webapi\Rest\Request $request,
         \Magento\Store\Model\StoreManagerInterface $storeManager
 
