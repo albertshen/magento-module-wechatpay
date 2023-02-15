@@ -102,7 +102,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
 
     public function refund(\Magento\Payment\Model\InfoInterface $payment, $amount)
     {
-        var_dump($amount);exit;
+        //var_dump($amount);exit;
         return $this;
     }
 }
