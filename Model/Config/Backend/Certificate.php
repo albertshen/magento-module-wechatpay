@@ -14,6 +14,39 @@ class Certificate extends \Magento\Config\Model\Config\Backend\File
 {
 
     /**
+     * Save uploaded file before saving config value
+     *
+     * @return $this
+     * @throws LocalizedException
+     */
+    public function beforeSave()
+    {
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $configWriter = $objectManager->create(\Magento\Framework\App\Config\Storage\WriterInterface::class);
+
+        $fieldConfig = $this->getFieldConfig();
+
+        $file = $this->getFileData();
+
+        if (isset($file['tmp_name'])) {
+            if ('mch_secret_cert_path' == $fieldConfig['id']) {  
+                $mchSecretCert = str_replace(["-----BEGIN PRIVATE KEY-----", "-----END PRIVATE KEY-----", "\r\n", "\n"], "", file_get_contents($file['tmp_name']));
+                $configWriter->save(\AlbertMage\WeChatPay\Observer\PaymentConfig::XML_PATH_MCH_SECRET_CERT, $mchSecretCert);
+            }
+            if ('mch_public_cert_path' == $fieldConfig['id']) {  
+                $mchPublicCert = str_replace(["\r"], "", file_get_contents($file['tmp_name']));
+                $configWriter->save(\AlbertMage\WeChatPay\Observer\PaymentConfig::XML_PATH_MCH_PUBLIC_CERT, $mchPublicCert);
+            }
+        }
+
+        $this->setValue('');
+
+        return $this;
+    }
+
+    /**
      * Prepend path with scope info
      *
      * E.g. 'stores/2/path' , 'websites/3/path', 'default/path'

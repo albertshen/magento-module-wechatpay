@@ -11,10 +11,21 @@ interface PaymentInterface {
 
 	const GATEWAY = 'wechatpay';
 
+	const MINI_TYPE = 'MINI';
+
+	const H5_TYPE = 'H5';
+
 	/**
-	 * @return array
+	 * @param string $order_no
+	 * @return \AlbertMage\WeChatPay\Api\Data\MiniInterface
 	 */
-	public function jsapi();
+	public function mini(string $order_no);
+
+	/**
+	 * @param int $order_id
+	 * @return \AlbertMage\WeChatPay\Api\Data\JsapiInterface
+	 */
+	public function jsapi(int $order_id);
 
 	/**
 	 * @return \AlbertMage\WeChatPay\Api\Data\QrcodeInterface

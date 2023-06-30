@@ -8,10 +8,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Albert\Payment\Plugin\ParserPlugin;
-use Albert\Payment\Plugin\Wechat\PreparePlugin;
-use Albert\Payment\Plugin\Wechat\SignPlugin;
-use Albert\Payment\Plugin\Wechat\WechatPublicCertsPlugin;
+use Yansongda\Pay\Plugin\ParserPlugin;
+use Yansongda\Pay\Plugin\Wechat\PreparePlugin;
+use Yansongda\Pay\Plugin\Wechat\SignPlugin;
+use Yansongda\Pay\Plugin\Wechat\WechatPublicCertsPlugin;
 
 /**
  * A console command that lists all the existing users.
@@ -64,9 +64,9 @@ class DownloadWeChatCertCommand extends Command
             [PreparePlugin::class, WechatPublicCertsPlugin::class, SignPlugin::class, ParserPlugin::class],
             []
         )->get('data', []);
-        print_r($data);exit;
+        //print_r($data);exit;
         foreach ($data as $item) {
-            $certs[$item['serial_no']] = decrypt_wechat_resource($item['encrypt_certificate'], [])['ciphertext'] ?? '';
+            $certs[$item['serial_no']] = \Yansongda\Pay\decrypt_wechat_resource($item['encrypt_certificate'], [])['ciphertext'] ?? '';
         }
         print_r($certs);
     }

@@ -16,9 +16,6 @@
                 <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
                 </field>
-                <field id="mch_test" translate="label" required="true" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Test</label>
-                </field>
                 <field id="mch_id" translate="label" required="true" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Merchant ID</label>
                 </field>
@@ -38,23 +35,36 @@
                     <label>Merchant Secret Key</label>
                 </field>
                 <field id="mch_secret_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="9" showInDefault="1" showInWebsite="1" >
-                    <label>Merchant Secret Cert Path</label>
+                    <label>Merchant Secret Cert File</label>
                     <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
                 </field>
+                <field id="mch_secret_cert" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" >
+                    <label>Merchant Secret Cert</label>
+                    <frontend_model>AlbertMage\WeChatPay\Block\System\Config\Form\Field\Disable</frontend_model>
+                </field>
                 <field id="mch_public_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="10" showInDefault="1" showInWebsite="1" >
-                    <label>Merchant Public Cert Path</label>
+                    <label>Merchant Public Cert File</label>
                     <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
+                </field>
+                <field id="mch_public_cert" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" >
+                    <label>Merchant Public Cert</label>
+                    <frontend_model>AlbertMage\WeChatPay\Block\System\Config\Form\Field\Disable</frontend_model>
                 </field>
                 <field id="wechatpay_serial" translate="label" required="true" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Wechatpay Serial No</label>
                 </field>
+                <field id="wechat_public_cert" translate="label" type="textarea" sortOrder="12" showInDefault="1" showInWebsite="1" >
+                    <label>WeChat Public Cert</label>
+                </field>
+                <!--
                 <field id="wechat_public_cert_path" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="12" showInDefault="1" showInWebsite="1" >
                     <label>WeChat Public Cert Path</label>
                     <backend_model>AlbertMage\WeChatPay\Model\Config\Backend\Certificate</backend_model>
                     <upload_dir config="system" scope_info="1">certificate/wechatpay</upload_dir>
                 </field>
+                -->
                 <field id="notify_url" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Notify Url</label>
                 </field>

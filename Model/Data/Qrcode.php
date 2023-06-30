@@ -3,12 +3,15 @@
  * Copyright © PHP Digital, Inc. All rights reserved.
  */
 namespace AlbertMage\WeChatPay\Model\Data;
- 
+
+use Magento\Framework\DataObject;
+use AlbertMage\WeChatPay\Api\Data\QrcodeInterface;
+
 /**
  * @api
  * @author Albert Shen <albertshen1206@gmail.com>
  */
-class Qrcode extends \Magento\Framework\Model\AbstractExtensibleModel implements \AlbertMage\WeChatPay\Api\Data\QrcodeInterface
+class Qrcode extends DataObject implements QrcodeInterface
 {
 
     /**
