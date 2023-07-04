@@ -16,16 +16,16 @@ interface PaymentInterface {
 	const H5_TYPE = 'H5';
 
 	/**
-	 * @param string $order_no
+	 * @param string $orderId
 	 * @return \AlbertMage\WeChatPay\Api\Data\MiniInterface
 	 */
-	public function mini(string $order_no);
+	public function mini($orderId);
 
 	/**
-	 * @param int $order_id
+	 * @param int $orderId
 	 * @return \AlbertMage\WeChatPay\Api\Data\JsapiInterface
 	 */
-	public function jsapi(int $order_id);
+	public function jsapi(int $orderId);
 
 	/**
 	 * @return \AlbertMage\WeChatPay\Api\Data\QrcodeInterface

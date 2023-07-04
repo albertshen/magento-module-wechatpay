@@ -75,12 +75,13 @@ class Payment implements \AlbertMage\WeChatPay\Api\PaymentInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function mini(string $order_no)
+	public function mini($orderId)
 	{
 
 		try {
 
-			$order = $this->orderInterface->loadByIncrementId($order_no);
+			//$order = $this->orderInterface->loadByIncrementId($order_no);
+			$order = $this->orderInterface->load($orderId);
 
 			$weappUser = $this->socialAccountRepository->getMiniprogramAccount($order->getCustomerId());
 
@@ -88,7 +89,7 @@ class Payment implements \AlbertMage\WeChatPay\Api\PaymentInterface
 			    'out_trade_no' => self::MINI_TYPE.'-'.$order->getIncrementId(),
 			    'description' => $order->getIncrementId(),
 			    'amount' => [
-			        'total' => $order->getGrandTotal() * 100,
+			        'total' => $order->getGrandTotal() * 1,
 			    ],
 			    'payer' => [
 			        'openid' => $weappUser->getOpenId(),
@@ -108,8 +109,10 @@ class Payment implements \AlbertMage\WeChatPay\Api\PaymentInterface
 			return $jsapi;
 
 		} catch (\Yansongda\Pay\Exception\InvalidResponseException $e) {
+			var_dump($e);exit;
+			$response = json_decode($e->response['body'], true);
 			throw new \Magento\Framework\Exception\LocalizedException(
-				__('code: '.$e->response['code'].' '.$e->response['message']),
+				__('code: '.$response['code'].' '.$response['message']),
 				null,
 				$e->getCode()
 			);
@@ -119,11 +122,11 @@ class Payment implements \AlbertMage\WeChatPay\Api\PaymentInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function jsapi(int $order_id)
+	public function jsapi(int $orderId)
 	{
 		//$order = $this->request->getBodyParams();
 		try {
-			$orderObject = $this->orderInterface->create()->load($order_id);
+			$orderObject = $this->orderInterface->create()->load($orderId);
 
 			$order = [
 			    'out_trade_no' => time().'', //需为 string 类型

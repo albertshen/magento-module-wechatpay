@@ -69,6 +69,7 @@ class DownloadWeChatCertCommand extends Command
             $certs[$item['serial_no']] = \Yansongda\Pay\decrypt_wechat_resource($item['encrypt_certificate'], [])['ciphertext'] ?? '';
         }
         print_r($certs);
+        return 1;
     }
 
 }
