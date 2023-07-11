@@ -1,25 +1,31 @@
 <?xml version="1.0" ?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
 	<route url="/V1/payment/wechat/mini" method="GET">
-		<service class="AlbertMage\WeChatPay\Api\PaymentInterface" method="mini"/>
+		<service class="AlbertMage\WeChatPay\Api\PaymentManagementInterface" method="mini"/>
 		<resources>
             <resource ref="self"/>
         </resources>
 	</route>
 	<route url="/V1/payment/wechat/jsapi" method="POST">
-		<service class="AlbertMage\WeChatPay\Api\PaymentInterface" method="jsapi"/>
+		<service class="AlbertMage\WeChatPay\Api\PaymentManagementInterface" method="jsapi"/>
 		<resources>
             <resource ref="self"/>
         </resources>
 	</route>
 	<route url="/V1/payment/wechat/native_scan" method="POST">
-		<service class="AlbertMage\WeChatPay\Api\PaymentInterface" method="nativeScan"/>
+		<service class="AlbertMage\WeChatPay\Api\PaymentManagementInterface" method="nativeScan"/>
 		<resources>
             <resource ref="self"/>
         </resources>
 	</route>
 	<route url="/V1/payment/wechat/h5" method="GET">
-		<service class="AlbertMage\WeChatPay\Api\PaymentInterface" method="h5"/>
+		<service class="AlbertMage\WeChatPay\Api\PaymentManagementInterface" method="h5"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/payment/wechat/notify" method="POST">
+		<service class="AlbertMage\WeChatPay\Api\PaymentManagementInterface" method="notify"/>
 		<resources>
 			<resource ref="anonymous"/>
 		</resources>

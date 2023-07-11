@@ -7,7 +7,7 @@ namespace AlbertMage\WeChatPay\Api;
 /**
  * @author Albert Shen <albertshen1206@gmail.com>
  */
-interface PaymentInterface {
+interface PaymentManagementInterface {
 
 	const GATEWAY = 'wechatpay';
 
@@ -37,6 +37,11 @@ interface PaymentInterface {
 	 * @return string
 	 */
 	public function h5($param);
+
+	/**
+	 * @return bool
+	 */
+	public function notify();
 
 
 }

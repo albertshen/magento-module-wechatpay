@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="AlbertMage\WeChatPay\Api\PaymentInterface" type="AlbertMage\WeChatPay\Model\Service\Payment"/>
+	<preference for="AlbertMage\WeChatPay\Api\PaymentManagementInterface" type="AlbertMage\WeChatPay\Model\PaymentManagement"/>
     <preference for="AlbertMage\WeChatPay\Api\Data\QrcodeInterface" type="AlbertMage\WeChatPay\Model\Data\Qrcode"/>
     <preference for="AlbertMage\WeChatPay\Api\Data\JsapiInterface" type="AlbertMage\WeChatPay\Model\Data\Jsapi"/>
 	<type name="Magento\Framework\Console\CommandListInterface">
