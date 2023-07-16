@@ -92,13 +92,13 @@ class PaymentManagement implements \AlbertMage\WeChatPay\Api\PaymentManagementIn
 			//$order = $this->orderInterface->loadByIncrementId($order_no);
 			$order = $this->orderInterface->load($orderId);
 
-			$weappUser = $this->socialAccountRepository->getMiniprogramAccount($order->getCustomerId());
+			$weappUser = $this->socialAccountRepository->getWeChatMiniprogramAccount($order->getCustomerId());
 
 			$orderData = [
 			    'out_trade_no' => self::MINI_TYPE.'-'.$order->getIncrementId(),
 			    'description' => $order->getIncrementId(),
 			    'amount' => [
-			        'total' => $order->getGrandTotal() * 1,
+			        'total' => $order->getGrandTotal() * 100,
 			    ],
 			    'payer' => [
 			        'openid' => $weappUser->getOpenId(),
@@ -118,7 +118,6 @@ class PaymentManagement implements \AlbertMage\WeChatPay\Api\PaymentManagementIn
 			return $jsapi;
 
 		} catch (\Yansongda\Pay\Exception\InvalidResponseException $e) {
-			var_dump($e);exit;
 			$response = json_decode($e->response['body'], true);
 			throw new \Magento\Framework\Exception\LocalizedException(
 				__('code: '.$response['code'].' '.$response['message']),
@@ -223,7 +222,7 @@ class PaymentManagement implements \AlbertMage\WeChatPay\Api\PaymentManagementIn
 	{
         $paymentData = $this->request->getBodyParams();
 
-        var_dump($notify);exit;
+        //var_dump($notify);exit;
         
         // $str = '{"id":"5a6d1746-6d72-5cfb-b9ae-16c6fbdd770d","create_time":"2021-08-11T23:40:08+08:00","resource_type":"encrypt-resource","event_type":"TRANSACTION.SUCCESS","summary":"支付成功","resource":{"original_type":"transaction","algorithm":"AEAD_AES_256_GCM","ciphertext":{"mchid":"1525330731","appid":"wx14e621bda5433838","out_trade_no":"000000061","transaction_id":"4200001156202108116220267523","trade_type":"JSAPI","trade_state":"SUCCESS","trade_state_desc":"支付成功","bank_type":"BOC_CREDIT","attach":"","success_time":"2021-08-11T23:40:08+08:00","payer":{"openid":"oQj-F0g0rAYzORurrCsebDwD74cM"},"amount":{"total":1,"payer_total":1,"currency":"CNY","payer_currency":"CNY"}},"associated_data":"transaction","nonce":"Fmx78BIUZ5LX"}}';
 
@@ -233,11 +232,11 @@ class PaymentManagement implements \AlbertMage\WeChatPay\Api\PaymentManagementIn
         $orderNo = $paymentData['resource']['ciphertext']['out_trade_no'];
         $transactionId = $paymentData['resource']['ciphertext']['transaction_id'];
 
-        $order = $this->orderFactory->create()->loadByIncrementId($orderNo);
+        $order = $this->orderInterface->loadByIncrementId($orderNo);
 
-        $this->paymentCapture
+        $this->paymentCaptureFactory->create()
             ->setOrder($order)
-            ->setPaymenGateway(\AlbertMage\WeChatPay\Api\PaymentInterface::GATEWAY)
+            ->setPaymenGateway(\AlbertMage\WeChatPay\Api\PaymentManagementInterface::GATEWAY)
             ->setTransactionId($transactionId)
             ->setPaymentRawData((array) $paymentData)
             ->capture();
